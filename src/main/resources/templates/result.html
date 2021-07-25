@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Getting Started: Handling Form Submission</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Form</h1>
+	<form action="#" th:action="@{/random}" method="post">
+		<p>
+			Message: <input type="text" th:name="numberNeeded" />
+		</p>
+		<p>
+			<input type="submit" value="Submit" /> <input type="reset"
+				value="Reset" />
+		</p>
+	</form>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Author</th>
+			</tr>
+		</thead>
+		<tbody>
+		<!-- 
+			<tr th:if="${registers.empty}">
+				<td colspan="2">No Books Available</td>
+			</tr> -->
+			
+			<tr th:each="register : ${registers}">
+				<td><span th:text="${register.subscriber.id}"> Id </span></td>
+				<td><span th:text="${register.subscriber.fullName}"> Name </span></td>
+				<td><span th:text="${register.registerNumber}"> Number </span></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h1>Initialize</h1>
+	<form action="#" th:action="@{/initialize}" method="post">
+		<p>
+			<input type="submit" value="Submit" /> <input type="submit"
+				value="Reset" />
+		</p>
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Getting Started: Handling Form Submission</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script src="extensions/export/bootstrap-table-export.js"></script>
+<body>
+	<h1>Form</h1>
+	<form action="#" th:action="@{/random}" method="post">
+		<p>
+			Batch number: <input type="text" th:name="numberNeeded" />
+		</p>
+		<p>
+			<input type="submit" value="Submit" class="btn btn-primary" /> <input
+				type="reset" class="btn btn-primary" value="Reset" />
+		</p>
+		<p th:text="'pending: ' + ${pending}" />
+
+
+	</form>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Number</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- 
+			<tr th:if="${registers.empty}">
+				<td colspan="2">No Books Available</td>
+			</tr> -->
+
+			<tr th:each="register : ${registers}">
+				<td><span th:text="${register.subscriber.id}"> Id </span></td>
+				<td><span th:text="${register.subscriber.fullName}">
+						Name </span></td>
+				<td><span th:text="${register.registerNumber}"> Number </span></td>
+			</tr>
+		</tbody>
+	</table>
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+			<li class="page-item"><a class="page-link" href="#">1</a></li>
+			<li class="page-item"><a class="page-link" href="#">2</a></li>
+			<li class="page-item"><a class="page-link" href="#">3</a></li>
+			<li class="page-item"><a class="page-link" href="#">Next</a></li>
+		</ul>
+	</nav>
+	<p>
+		<input type="submit" value="Export to Excel" class="btn btn-primary" /> 
+	</p>
+
+	<h1>Initialize</h1>
+	<form action="#" th:action="@{/initialize}" method="post">
+		<p>
+			<input type="submit" value="Submit" /> <input type="submit"
+				value="Reset" />
+		</p>
+	</form>
+
+	<form method="POST" th:action="@{/upload-csv-file}" action="#"
+		enctype="multipart/form-data">
+		<div class="form-group mt-3">
+			<label for="file">Select a CSV file</label> <input type="file"
+				name="file" class="form-control-file" id="file" accept=".csv">
+		</div>
+		<button type="submit" class="btn btn-primary">Import Users</button>
+	</form>
+</body>
+</html>
